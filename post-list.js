@@ -9,11 +9,11 @@ class PostList extends HTMLElement {
 
   async connectedCallback() {
     this.render();
-      const {data,error} = await getPosts();
-      this.posts = data;
-      if( error ) {
-          notify( error.message, "danger" );
-          }
+    const { data, error } = await getPosts();
+    this.posts = data;
+    if (error) {
+      notify(error.message, "danger");
+    }
     this.channel = supabase
       .channel("schema-db-changes")
       .on(
@@ -65,7 +65,7 @@ class PostList extends HTMLElement {
       li.innerHTML = `
 <h2>${post.title}</h2>
 <time>${post.created_at}</time>
-</time>
+<p>Sentiment: ${post.sentiment}</p>
 <p>${post.body}</p>
 `;
       ul.appendChild(li);
