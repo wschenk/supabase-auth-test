@@ -1,5 +1,7 @@
-import { supabase } from "./db.js";
-import { notify } from "./notify.js";
+import { supabase } from "../db.js";
+import { notify } from "../notify.js";
+import "./anonymous-profile.js";
+import "./authed-profile.js";
 
 class ProfilePanel extends HTMLElement {
   constructor() {
@@ -9,7 +11,6 @@ class ProfilePanel extends HTMLElement {
 
   connectedCallback() {
     const { localdata } = supabase.auth.onAuthStateChange((event, session) => {
-      notify(event);
       if (event == "SIGNED_IN") {
         this.state = "authenticated";
         this.session = session;
@@ -17,6 +18,8 @@ class ProfilePanel extends HTMLElement {
       } else if (event == "SIGNED_OUT") {
         this.state = "anonymous";
         this.session = null;
+      } else {
+        notify(event);
       }
       this.render();
     });
@@ -30,13 +33,13 @@ class ProfilePanel extends HTMLElement {
     this.data.subscription.unsubscribe();
   }
 
-    render() {
-        if( this.state != 'authenticated' ) {
-            this.innerHTML = '<anonymous-profile>Anonymous</anonymous-profile>';
-        } else {
-            this.innerHTML = `<authed-profile email="${this.session.user.email}">Logged in</authed-profile>`
-        }
+  render() {
+    if (this.state != "authenticated") {
+      this.innerHTML = "<anonymous-profile>Anonymous</anonymous-profile>";
+    } else {
+      this.innerHTML = `<authed-profile email="${this.session.user.email}">Logged in</authed-profile>`;
     }
+  }
 }
 
 customElements.define("profile-panel", ProfilePanel);

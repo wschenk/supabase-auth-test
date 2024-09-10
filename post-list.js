@@ -3,7 +3,7 @@ import { supabase, getPosts } from "./db.js";
 class PostList extends HTMLElement {
   constructor() {
     super();
-    this.attachShadow({ mode: "open" });
+    // this.attachShadow({ mode: "open" });
     this.posts = [];
   }
 
@@ -39,7 +39,7 @@ class PostList extends HTMLElement {
   }
 
   render() {
-    this.shadowRoot.innerHTML = `
+    this.innerHTML = `
       <style>
         ul {
           list-style: none;
@@ -59,7 +59,7 @@ class PostList extends HTMLElement {
       </ul>
     `;
 
-    const ul = this.shadowRoot.querySelector("ul");
+    const ul = this.querySelector("ul");
     this.posts.forEach((post) => {
       const li = document.createElement("li");
       li.innerHTML = `

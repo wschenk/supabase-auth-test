@@ -1,44 +1,57 @@
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 body {
-    font-family: var(--sl-font-sans);
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 0 var(--sl-spacing-medium);
+  font-family: var(--sl-font-sans);
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 var(--sl-spacing-medium);
 }
 
 h1 {
-    font-size: var(--sl-font-size-3x-large);
+  font-size: var(--sl-font-size-3x-large);
 }
 
 h2 {
-    font-size: var(--sl-font-size-2x-large);
+  font-size: var(--sl-font-size-2x-large);
 }
 
 h3 {
-    font-size: var(--sl-font-size-x-large);
+  font-size: var(--sl-font-size-x-large);
 }
 
 h4 {
-    font-size: var(--sl-font-size-large);
+  font-size: var(--sl-font-size-large);
 }
 
 p,
 ul,
 ol {
-    font-size: var(--sl-font-size-large);
+  font-size: var(--sl-font-size-large);
 }
 
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 section#post-form {
-    max-width: 65ch;
-    margin: 0 auto;
+  max-width: 65ch;
+  margin: 0 auto;
 }
 
 .sl-toast-stack {
-    left: 0;
-    right: auto;
+  left: 0;
+  right: auto;
+}
+
+::file-selector-button {
+  background-color: var(--sl-color-primary-50);
+  border: 1px solid var(--sl-color-primary-60);
+  border-radius: var(--sl-border-radius-medium);
+  padding: var(--sl-spacing-2x-small) var(--sl-spacing-medium);
+  cursor: pointer;
 }
